@@ -1,6 +1,7 @@
 {
   "name": "Sample Mod",
   "creators": ["Tethrarxitet"],
+  "id": "tethrarxitet.sample_mod",
 
   "//a": "All arguments below are optional; the files written are the defaults if",
   "//b": "not reassigned.",
