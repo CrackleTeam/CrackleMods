@@ -28,10 +28,10 @@ return {
     id: "jameson-compat", // the id of the mod
     name: "Jameson Compatibility", // human-readable name
     description: "Patch Snap! to support Jameson-only primitives. Does not include Jameson libraries.", // description
-    version: "1.0", // version
+    version: "1.1", // version
     author: "mojavesoft.net", // author
     depends: [], // dependencies (mod ids, useful for libraries)
-    doMenu: true, // whether to add a menu item
+    doMenu: false, // whether to add a menu item
 
     // Main function - gets ran when the mod is loaded
     main(api) {
@@ -57,11 +57,40 @@ return {
             }
         );
 
+        // Jameson self-inspection primitives
+        SnapExtensions.primitives.set(
+            'trusted_urls()',
+            function () {
+                return IDE_Morph.prototype.newList(SnapExtensions.urls);
+            }
+        );
+
+
+        SnapExtensions.primitives.set(
+            'get_primitive_code(name)',
+            function (name) {
+                return SnapExtensions.primitives.get(name).toString();
+            }
+        );
+
+        SnapExtensions.primitives.set(
+            'all_primitives()',
+            function () {
+                let my_primitives = Object.fromEntries(SnapExtensions.primitives);
+                return IDE_Morph.prototype.newList(Object.getOwnPropertyNames(my_primitives));
+            }
+        );
     },
 
     // Cleanup functions - get ran when the mod is "deleted"
     cleanupFuncs: [
-        // ...
-    ],
+        () => {
+            SnapExtensions.primitives.delete('generate_uuid()');
+            SnapExtensions.primitives.delete('uuid_available()');
+            SnapExtensions.primitives.delete('webcrypto_available()');
+            SnapExtensions.primitives.delete('trusted_urls()');
+            SnapExtensions.primitives.delete('all_primitives()')
+        }
+    ]
 
 }
