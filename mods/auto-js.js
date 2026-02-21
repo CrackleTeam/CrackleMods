@@ -2,7 +2,7 @@ return {
     id: "auto-js",
     name: "Auto JS",
     description: "Automatically, by default, enable JavaScript extensions.",
-    version: "1.0",
+    version: "1.0.0",
     author: "codingisfun2831",
     depends: [],
     doMenu: false,
