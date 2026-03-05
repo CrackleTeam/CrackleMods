@@ -9,6 +9,7 @@ const path = require('path');
 const { compileFunction } = require('vm');
 
 const modsDir = path.join(__dirname, 'mods');
+const extraDir = path.join(__dirname, 'extra');
 const outputFile = path.join(__dirname, 'mods.json');
 
 const mods = [];
@@ -28,6 +29,25 @@ files.forEach(file => {
 
         // and doMenu
         delete mod.doMenu;
+
+        // see if there is a extra folder, and if so whats in it
+        const extraPath = path.join(extraDir, mod.id)
+        if (fs.existsSync(extraPath)) {
+            const extra = fs.readdirSync(extraPath);
+
+            mod.extra = [];
+
+            if (extra.includes("logo.png")) {
+                mod.extra.push("logo");
+            }
+            
+            if (extra.includes("readme.txt")) {
+                mod.extra.push("readme");
+            }
+        } else {
+            mod.extra = null;
+        }
+        
 
         mods.push(mod);
     }

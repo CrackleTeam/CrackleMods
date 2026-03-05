@@ -5,15 +5,20 @@
         "description": "Automatically, by default, enable JavaScript extensions.",
         "version": "1.0.0",
         "author": "codingisfun2831",
-        "depends": []
+        "depends": [],
+        "extra": [
+            "logo",
+            "readme"
+        ]
     },
     {
         "id": "better-flat-design",
         "name": "Better Flat Design",
         "description": "Makes flat design BETTER!",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "author": "d016",
-        "depends": []
+        "depends": [],
+        "extra": null
     },
     {
         "id": "jameson-compat",
@@ -21,6 +26,7 @@
         "description": "Patch Snap! to support Jameson-only primitives. Does not include Jameson libraries.",
         "version": "1.2.0",
         "author": "mojavesoft.net",
-        "depends": []
+        "depends": [],
+        "extra": null
     }
 ]
